@@ -17,22 +17,22 @@ class Discplina(models.Model):
     def __str__(self):
             return self.idDisciplina
     
-class Aula(models.Model):
-    disciplina = models.ManyToManyField(Discplina)
-    professor = models.ManyToManyField(Professores)
-
+class Cursos(models.Model):
+    cursos = models.ManyToManyField(Discplina)
     def __str__(self):
-        return self.disciplina
+            return self.cursos
 
 class Turma(models.Model):
     nomeTurma = models.CharField(max_length=100)
 
     def __str__(self):
         return self.nomeTurma
+    
+class Aula(models.Model):
+    disciplina = models.ManyToManyField(Discplina)
+    professor = models.ManyToManyField(Professores)
+    curso = models.ManyToManyField(Cursos)
+    turma = models.ManyToManyField(Turma)
 
-
-
-
-
-
-
+    def __str__(self):
+        return self.disciplina
